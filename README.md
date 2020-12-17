@@ -1,2 +1,2 @@
-# architectural-descision-log
-The hamlet architectural descsion log
+# architectural-decision-log
+The hamlet architectural decision log
