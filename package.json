@@ -1,0 +1,23 @@
+{
+  "name": "architectural-decision-log",
+  "version": "1.0.0",
+  "description": "This log lists the architectural decisions for [project name].",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamlet-io/architectural-decision-log.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hamlet-io/architectural-decision-log/issues"
+  },
+  "homepage": "https://github.com/hamlet-io/architectural-decision-log#readme",
+  "dependencies": {
+    "adr-log": "^2.2.0",
+    "madr": "^2.1.2"
+  }
+}
