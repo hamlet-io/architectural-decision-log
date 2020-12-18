@@ -54,6 +54,10 @@ This would move the bash scripts we currently have into our freemarker wrapper j
 
 This would maintain our existing tooling but introduce an abstraction layer between the two services, in this model we would define the freemarker components as the engine, this is responsible for creating outputs from the the contents of the CMDB which outline a list of instructions as contracts and any supporting documents that they require. The bash components would become an executor, they are responsible for actioning the outputs provided from the engine and providing the outputs from these executions back to the CMDB.
 
+In this model the engine would be invoked with a default set of parameters requesting a generation contract, the engine would create an output which outlines the additional output documents required for a given action. The executor then invokes the engine using the parameters provided in the contract to create the outputs required. This could include other contracts which the executor then runs to perform additional tasks in order to complete a given action. T
+
+This requires the executor to essentially implement, the contracts would be made up of defined steps and include parameters required to complete the step. The executor is responsible for providing an implementation of all steps defined in the engine
+
 * Good, because this creates a clear line between what the bash tooling performs and what the freemarker tooling performs
 * Good, because this defines functionality within hamlet rather than basing it on tooling
 * Good, because this allows for the functionality implementation change if required with reduced impact and redevelopment
