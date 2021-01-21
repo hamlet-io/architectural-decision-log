@@ -9,7 +9,8 @@ The records below are accepted Design records which we follow as part of hamlet
 
 <!-- adrlog -- Regenerate the content by using "adr-log -i". You can install it via "npm install -g adr-log" -->
 
-- [ADR-0000](0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
+* [ADR-0000](adr/0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
+* [ADR-0003](adr/0003-provide-implementation-tracking-on-records.md) - Include Implementation Log as part of Decision Records
 
 <!-- adrlogstop -->
 
