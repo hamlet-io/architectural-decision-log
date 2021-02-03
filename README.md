@@ -11,6 +11,7 @@ The records below are accepted Design records which we follow as part of hamlet
 
 * [ADR-0000](adr/0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
 * [ADR-0003](adr/0003-provide-implementation-tracking-on-records.md) - Include Implementation Log as part of Decision Records
+* [ADR-0004](adr/0004-provide-error-codes-on-handled-exception.md) - Provide Users an Error Code on Fatal Error
 
 <!-- adrlogstop -->
 
