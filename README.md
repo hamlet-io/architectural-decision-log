@@ -10,6 +10,7 @@ The records below are accepted Design records which we follow as part of hamlet
 <!-- adrlog -- Regenerate the content by using "adr-log -i". You can install it via "npm install -g adr-log" -->
 
 * [ADR-0000](adr/0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
+* [ADR-0001](adr/0001-executor-engine-separation.md) - Executor Engine Separation
 * [ADR-0003](adr/0003-provide-implementation-tracking-on-records.md) - Include Implementation Log as part of Decision Records
 
 <!-- adrlogstop -->
@@ -32,7 +33,6 @@ To Update the log above run the following commands from the root of the repo
 
 ```
 npm install
-npx adr-log
 npx adr-log -i README.md -d adr/
 ```
 
