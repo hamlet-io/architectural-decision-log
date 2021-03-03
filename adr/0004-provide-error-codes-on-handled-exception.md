@@ -3,6 +3,7 @@
 * Status: accepted
 * Deciders: rossmurr4y, roleyfoley, ml019
 * Date: 2021-03-02
+* Implementation Log: https://github.com/hamlet-io/architectural-decision-log/issues/7
 
 ## Context and Problem Statement
 
