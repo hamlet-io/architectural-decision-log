@@ -1,8 +1,8 @@
 # [Provide Users an Error Code on Fatal Error]
 
-* Status: proposed
-* Deciders: tba
-* Date: 2021-02-03
+* Status: accepted
+* Deciders: rossmurr4y, roleyfoley, ml019
+* Date: 2021-03-02
 
 ## Context and Problem Statement
 
@@ -18,22 +18,30 @@ When a handled exception occurs, there is no consistency in the error informatio
 ## Considered Options
 
 * create a manually-maintained library of error codes & assign one to each handled error
-* [for consideration in addition to the above] group like-errors by convention 
+* introduce logging classes, that group together messages of a simmilar kind
 
 ## Decision Outcome
 
-Pending discussion
+Chosen option: introduce logging classes, that group together messages of a simmilar kind. Later we will re-evaluate to determine if a more specific approach to error handling (such as individual error codes outlined above) would remain useful / necessary and if so can build upon this framework.
 
-<!-- Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)]. -->
 
-### Positive Consequences
+### Manually-maintained library of error codes
 
-* provide a method for additional documentation on individual error messages
-  * which may provide an avenue to see which errors are encountered / searched most frequently
-* improved reporting / communication around errors experienced
-* improved clarity around what constitutes a "handled" and "unhandled" error message
-* greater consistency between the different parts of Hamlet Deploy
+* Good - will provide a method for providing tailored error messages and possible fixes to the user
+* Good - could be extended to provide an avenue for review of the most-encountered error messages
+* Good - improved reporting / communication around errors experienced
+* Good - consistency across the spectrum of potential error sources
+* Bad - increase in maintenance overhead
+* Bad - may be a challenge to enforce consistently
+* Bad - difficult to make extensible by community content
 
-### Negative Consequences
 
-* increased maintenance overhead
+### Logging classes
+
+* Good - provide a method for tailoring messages, whilst allowing for re-usability
+* Good - accessible to community content
+* Good - consistency across the spectrum of potential error sources
+* Good - framework could be extended / upgraded at a later time
+* Good - minor maintenance overhead once established
+* Bad - less specificity is possible when compared to unique error messages
+
