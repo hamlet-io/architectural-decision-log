@@ -90,7 +90,7 @@ A code range allows each component to implement the definitions in the way that 
 ### Use an Inheritance-based Class Approach
 
 * Good, because inheritance will enable the greatest re-use of log codes
-* Good, because a log message can contain varying scopes of detail - ie. a known limitiation of the Engine for instance could be inherrited by a child, and a subsequent error will not only indicate the cause but provide background on that limitation
+* Good, because a log message can contain varying scopes of detail - ie. a known limitation of the Engine for instance could be inherited by a child, and a subsequent error will not only indicate the cause but provide background on that limitation
 * Bad, because it's greater work for each of the Hamlet Framework Components to implement up-front (a greater deal of the work is front-loaded)
 
 ### Centralised Code Definitions
