@@ -51,7 +51,7 @@ For the second digit, the Hamlet Framework Components would be assigned as follo
 
 ### Use an Inheritance-based Class Approach
 
-Design a layered log message system where a log message inherrits its severity and origin from parent classes, which themseles contribute greater detail to the message.
+Design a layered log message system where a log message inherits its severity and origin from parent classes, which themselves contribute greater detail to the message.
 
 > Severity
 >   Origin
