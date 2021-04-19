@@ -87,7 +87,7 @@ A code range allows each component to implement the definitions in the way that 
 * Good, because it standardises the approach to log messages across Hamlet Deploy
 * Bad, because there are no rules around how and when an existing code should be reused and when a new one assigned
 
-### Use an Inherritance-based Class Approach
+### Use an Inheritance-based Class Approach
 
 * Good, because inherritance will enable the greatest re-use of log codes
 * Good, because a log message can contain varying scopes of detail - ie. a known limitiation of the Engine for instance could be inherrited by a child, and a subsequent error will not only indicate the cause but provide background on that limitation
