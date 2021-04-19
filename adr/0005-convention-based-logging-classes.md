@@ -21,7 +21,7 @@ Hamlet Deploy as a product is made up from several "components". They are not wr
 ## Considered Options
 
 * Use logging codes that follow a numerical convention
-* Use an inherritance-based class approach
+* Use an inheritance-based class approach
 
 Separate to the logging code structure, the discussions identified two options as to _where_ log code definitions should be stored:
 
