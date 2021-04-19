@@ -49,7 +49,7 @@ For the second digit, the Hamlet Framework Components would be assigned as follo
 > Executor - bash - 4
 > Executor - python - 5
 
-### Use an Inherritance-based Class Approach
+### Use an Inheritance-based Class Approach
 
 Design a layered log message system where a log message inherrits its severity and origin from parent classes, which themseles contribute greater detail to the message.
 
