@@ -11,7 +11,7 @@ In its [implementation log](https://github.com/hamlet-io/architectural-decision-
 
 ## Context and Problem Statement
 
-Hamlet Deploy as a product is made up from several "components". They are not written in the same coding/scripting language and so there outputs - particularly when it comes to log behaviour and error messages - are quite different from eachother. When an error or debug message is received, how can the end-user and the Hamlet Deploy developer both gain greater insight from the message that is received?
+Hamlet Deploy as a product is made up from several "components". They are not written in the same coding/scripting language and so their outputs - particularly when it comes to log behaviour and error messages - are quite different from each other. When an error or debug message is received, how can the end-user and the Hamlet Deploy developer both gain greater insight from the message that is received?
 
 ## Decision Drivers <!-- optional -->
 
