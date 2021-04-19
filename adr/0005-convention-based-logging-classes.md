@@ -73,7 +73,7 @@ Each Component would then simply append the 2-digit-code to the message's severi
 
 Chosen option:  _"Use Logging Codes Followig a Numerical Convention"_ with _"Per-Component Code Range"_
 
-It was deemed easier to implement and there seemed little benefit and greater complexity to implementing an inherritance-based approach. 
+It was deemed easier to implement and there seemed little benefit and greater complexity to implementing an inheritance-based approach. 
 
 A code range allows each component to implement the definitions in the way that most makes sense to it.
 
