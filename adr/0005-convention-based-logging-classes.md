@@ -71,7 +71,7 @@ Each Component would then simply append the 2-digit-code to the message's severi
 
 ## Decision Outcome
 
-Chosen option:  _"Use Logging Codes Followig a Numerical Convention"_ with _"Per-Component Code Range"_
+Chosen option:  _"Use Logging Codes Following a Numerical Convention"_ with _"Per-Component Code Range"_
 
 It was deemed easier to implement and there seemed little benefit and greater complexity to implementing an inheritance-based approach. 
 
