@@ -79,7 +79,7 @@ A code range allows each component to implement the definitions in the way that 
 
 ## Pros and Cons of the Options
 
-### Use Logging Codes Followig a Numerical Convention
+### Use Logging Codes Following a Numerical Convention
 
 * Good, because its easy to maintain
 * Good, because each Hamlet Framework Component has easily understood log message boundaries
