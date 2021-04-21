@@ -1,7 +1,7 @@
 # Hamlet Engine distribution through docker image layers
 
-* Status: proposed
-* Deciders: roleyfoley
+* Status: accepted
+* Deciders: roleyfoley, rossMurr4y, ml019
 * Date: 2020-21-04
 
 ## Context and Problem Statement
@@ -25,17 +25,18 @@ The problem with this process is that it really only works in a controlled docke
 
 ## Decision Outcome
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+Chosen `Docker image layer as component artefacts with support for installing these images` as this is the most flexible option and provides a foundation for managing the distribution of hamlet code
 
-### Positive Consequences <!-- optional -->
+### Positive Consequences
 
-* [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-* …
+* Establishes a process for distributing packages which supports the different platforms we use
+* Opens up support for enhancing our release process to be safer and more flexible
+* Doesn't add too much overhead and is reasonably straightforward to understand
 
-### Negative Consequences <!-- optional -->
+### Negative Consequences
 
-* [e.g., compromising quality attribute, follow-up decisions required, …]
-* …
+* Is essentially implementing our own package manager which a lot of people already have and implement
+* Doesn't necessarily cover off the software platform dependencies but at least makes it get the scripts that can tell us that easily
 
 ## Pros and Cons of the Options
 
