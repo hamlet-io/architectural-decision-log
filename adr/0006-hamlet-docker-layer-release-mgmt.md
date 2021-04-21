@@ -53,7 +53,7 @@ COPY ./ /
 This would essentially create a single layer image that just contains the files in the repository. This docker image would be tagged and pushed to a docker repository
 The docker manifest lists the layers that are used in the docker image and the layers are tag.gz files when stored by the registry.
 
-Pulling this layer down essentially provides an artefact that can be tagged and treated like docker images as required.
+Pulling this layer down essentially provides an artefact that can be tagged and treated like docker images as required. This process would be based on the Docker registry spec v2 ( https://docs.docker.com/registry/spec/api/ )
 
 We would add processes to the executors which would pull the appropriate images for the components locally, store them locally based on their version and use a shim based approach for setting the active version of the components
 
