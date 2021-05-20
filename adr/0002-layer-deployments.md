@@ -21,24 +21,22 @@ How should we manage these resources to scale with our plugin support and to sup
 
 * Add support for a layer level component like deployment option
 * Refactor existing services to use a similar approach to extensions and apply extensions to layers
-
+* Extend occurrence support to work at any layer
 
 ## Decision Outcome
 
-Chosen option: "Add support for a layer level component like deployment option", because this allows for greater flexibility over the resources we can deploy and aligns with our other deployment processes
+Chosen option: "Extend occurrence support to work at any layer", because this allows for greater flexibility over the resources we can deploy and aligns with our other deployment processes
 
 ### Positive Consequences
 
-* Layer level components work in a similar way to our other components
-* We can use placements, providers and plugins to support custom layer deployments
-* Extends the existing account level deployments to work across user defined layers and support
-
+* Occurrences will be the approach we use for all deployments
+* Opens support for any occurrence features that we have in place already or develop in the future
+* Makes our existing deployment model easier to follow ( our current tiers deployments will belong to the Segment and show that relationship )
 
 ### Negative Consequences
 
-* Additional complexity in introducing the state management for these components
-* Processing requires additional steps including the creation of an occurrence like structure
-* The concept for the layer deployments will be similar to occurrences but won't be exactly the same
+* Complexity in extending the occurrence building process
+* May introduce some complexity in managing default and required singleton instances of deployments. We can manage this and could potentially be a useful feature
 
 ## Pros and Cons of the Options
 
@@ -53,7 +51,6 @@ So instead of a user being able to deploy multiple instances of a given componen
 * Good, because we can use standardised naming and state querying ( resources, attributes etc. )
 * Bad, because it adds complexity in our processing and requires the implementation of a new occurrence structure ( one which supports singleton deployments )
 
-
 ### Refactor existing services to use a similar approach to extensions and apply extensions to layers
 
 In this approach add extension support to layers, in this approach each layer would have a single deployment unit and the configured extensions on the layer would determine what is created for a given deployment. The state would then be provided in a similar way that we do now. In this approach the user would need to define the layers they require and have knowledge of required and optional deployment resources
@@ -62,3 +59,13 @@ In this approach add extension support to layers, in this approach each layer wo
 * Good, because it aligns with the current approach and would require less work to implement
 * Bad, because it wouldn't gain the benefits of state sharing and would require global naming functions to support
 * Bad, because it could create conflicting resources as part of a shared single deployment
+
+### Extend occurrence support to work at any layer
+
+In this option we would update the existing occurrence structure to support working at any layer. The occurrence structure has proven to be useful and has reached a pretty stable point. The occurrence building process would be extended to support dynamic loading based on the layer a given occurrence belongs to. This would allow each layer to define how naming, settings etc are determined and standardised configuration would be included where appropriate ( mostly component configuration ). Components definitions would then become global definitions which are available on layers they have support for. This approach would make use of all of the functionality included as part of occurrences including, deployment profiles, linking, instances, versions, schema generation and documentation.
+
+* Good, because it reuses a lot of what we already have
+* Good, because it unlocks the occurrence work we have done for use across the whole hamlet tenancy
+* Good, because it standardises all resource deployments into a single conceptual model ( components and occurrences )
+* Bad, because it will require significant redevelopment of our occurrence process
+* Bad, because it could potentially create some complexity or "lowest common denominator" issues that impact the implementation of the occurrence
