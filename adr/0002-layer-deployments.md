@@ -67,5 +67,5 @@ In this option we would update the existing occurrence structure to support work
 * Good, because it reuses a lot of what we already have
 * Good, because it unlocks the occurrence work we have done for use across the whole hamlet tenancy
 * Good, because it standardises all resource deployments into a single conceptual model ( components and occurrences )
-* Bad, because it will require significant redevelopment of our occurrence process
+* Bad, because it will require significant redevelopment of our occurrence process and could introduce bugs across the board
 * Bad, because it could potentially create some complexity or "lowest common denominator" issues that impact the implementation of the occurrence
