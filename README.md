@@ -15,7 +15,8 @@ The records below are accepted Design records which we follow as part of hamlet
 * [ADR-0003](adr/0003-provide-implementation-tracking-on-records.md) - Include Implementation Log as part of Decision Records
 * [ADR-0004](adr/0004-provide-error-codes-on-handled-exception.md) - [Provide Users an Error Code on Fatal Error]
 * [ADR-0005](adr/0005-convention-based-logging-classes.md) - [Convention-based Logging Classes]
-* [ADR-0006](adr/0006-hamlet-docker-layer-release-mgmt.md) - [Hamlet Distribution with Docker Layers]
+* [ADR-0006](adr/0006-hamlet-docker-layer-release-mgmt.md) - Hamlet Engine distribution through docker image layers
+* [ADR-0007](adr/0007-placement-support.md) - Placement Support
 
 <!-- adrlogstop -->
 
