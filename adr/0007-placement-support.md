@@ -25,12 +25,11 @@ The introduction of dynamic cmdb loading and the input pipeline processor with f
 
 ## Considered Options
 
-* Extend link semantics
-* Foundation Components
+This ADR extends on the decision made in [ADR-0002](../0002-layer-deployments.md) - Layer Level Deployments and provides more design detail, primarily by the enrichment of link semantics.
 
 ## Decision Outcome
 
-Chosen option: "Extend link semantics", because it addresses the deciosn drivers best (see below).
+Chosen option: "Extend link semantics", because it addresses the decision drivers best (see below) and aligns with the decision previously made.
 
 ### Positive Consequences <!-- optional -->
 
@@ -43,11 +42,9 @@ Chosen option: "Extend link semantics", because it addresses the deciosn drivers
 
 * Expansion of semantics of existing concepts may be harder to document, understand and explain than dedicated new concepts
 
-## Pros and Cons of the Options <!-- optional -->
+## Design Detail
 
-### Extend link semantics
-
-#### New Link Semantics
+### New Link Semantics
 
 Currently links are used extensively in product solutions. A link goes from an occurrence in one solution to an occurrence in another (possibly same) solution. This option builds on existing link processing as follows;
 
@@ -74,7 +71,7 @@ the link is configured.
 being the desired link definition.
 1. LinkRef attributes provide a convenient mechanism to centralise qualification of links shared across multiple components, as is commonly the case with placements.
 
-#### New Components
+### New Components
 
 This option also introduces two new components - `Subscription` and `HostingPlatform`.
 
@@ -88,7 +85,7 @@ HostingPlatform components will typically be used within an `account` scoped sol
 
 Instances of an account scoped solution will be identified by the `Tenant` and `Account` link attributes. They will typically contain an occurrence of the HostingPlatform component for each region in which resources are required.
 
-#### Locations Occurrence Attribute
+### Locations Occurrence Attribute
 
 All components will now support a `Locations` attribute, the purpose of which is to provide the mechanism for a component to document its
 requirements for information related to the placement of other components.
@@ -104,14 +101,14 @@ Being an occurrence attribute, the Locations attribute can be populated directly
 In general, it is expected that a LinkRef will be used for location links
 to centralise any qualifications, for example differentiation between non-production and production environment placements.
 
-#### ResourceGroup placement
+### ResourceGroup placement
 Placement of a resource group will be done by way of a location with the same name as the resource group, which **must** link to a HostingPlatform occurrence.
 
 A transition from the existing, single `default` resource group arrangement can easily be accommodated by defining the `_default` location using a LinkRef that switches HostingPlatform on the basis of environment.
 
 In turn, the HostingPlatform will provide the provider subscription id, region id and DeploymentFramework.
 
-#### Other Location Uses
+### Other Location Uses
 
 Over time, other uses of locations are expected, such as the selection of registries from which code should be sourced.
 
@@ -122,16 +119,3 @@ The current baseline and network processing could also be merged into location p
 * Good, becuase account and placement information is contined within the CMDB
 * Bad, because a degree of expertise in deployment profiles (a more advanced fature) is required.
 
-### Foundation Components
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
-
-## Links <!-- optional -->
-
-* [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
