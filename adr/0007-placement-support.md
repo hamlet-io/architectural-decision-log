@@ -61,7 +61,7 @@ Currently links are used extensively in product solutions. A link goes from an o
 1. The `Subcomponent` attribute replaces use of type specific attributes such as `Port`.
 1. An optional `Type` attribute is added to ensure links to same named subcomponents can be resolved. Its value is the component type of the link target.
 1. Each solution has a scope and an identifier within the scope.
-1. A link must have a `Scope` attribute representing the solution scope. The default, representing existing usage, is the `segment` scope.
+1. A link must have a `Scope` attribute representing the target-solution's scope. The default, representing existing usage, is the `segment` scope.
 1. The scope value determines what other ordered attributes of the link are used to identify the specific solution required.
 1. The attributes to identify the particular solution must either be present on the link, or inherited from the occurrence on which
 the link is configured.
@@ -118,4 +118,3 @@ The current baseline and network processing could also be merged into location p
 * Good, because it improves documentation of dependency requirements between components
 * Good, becuase account and placement information is contined within the CMDB
 * Bad, because a degree of expertise in deployment profiles (a more advanced fature) is required.
-
