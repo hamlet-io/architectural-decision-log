@@ -35,7 +35,7 @@ Chosen option: "Extend link semantics", because it addresses the decision driver
 
 * reduced configuration complexity - everything in one place
 * better validation of configurations
-* links have proven very flexible so expect the porposed changes to be repurposed for other things in the future
+* links have proven very flexible so expect the proposed changes to be re-purposed for other things in the future
 * straightforward transition process once infrastructure in place
 
 ### Negative Consequences <!-- optional -->
