@@ -46,7 +46,7 @@ Chosen option: "Extend link semantics", because it addresses the decision driver
 
 ### New Link Semantics
 
-Currently links are used extensively in product solutions. A link goes from an occurrence in one solution to an occurrence in another (possibly same) solution. This option builds on existing link processing as follows;
+Currently links are used extensively in product solutions. A link goes from an occurrence to another within a solution. This option builds on existing link processing as follows;
 
 1. A link targets an occurrence within a solution.
 1. A link uses attributes to identify a solution and the specific occurrence within that solution.
