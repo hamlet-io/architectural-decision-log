@@ -79,9 +79,11 @@ A `Subscription` component represents provider specific mechanism for purchasing
 
 Subscription components will typically be used with a `tenant` scoped solution. Instances of a tenant scoped solution will be identified by the `Tenant` link attribute.
 
-A `HostingPlatform` component represents the place within a subscription where resources can physically be hosted. An example for AWS or Azure would be a region within a `Subscription`.
+A `HostingPlatform` component represents a place within a subscription where resources can physically be deployed.
 
 HostingPlatform components will typically be used within an `account` scoped solution, optionally linked to the Subscription component with which they are associated. Where the subscription is externally created, the HostingPlatform explicitly carries the provider information for the subscription. Mixed usage are expected to be common, e.g. a master account for AWS is created externally with all subsequent accounts then being created via Subscription components.
+
+As an example of usage, for AWS or Azure it would be normal to see this component in each `account` scoped solution, with instances for each region that is active in the account. In the initial implementation, this component would not have resources of its own but would act somewhat like the external component and simply provide key attributes (like providerId and region in the case of AWS or Azure). However it is also likely that other components within an account solution, such as registries, would also link to this component in order to establish where account solution resources should be deployed. So when deploying an S3 based registry, a region would need to be provided to select the desired template to generate, with the HostingPlatform then being used to determine if a given registry should be included (see below on ResourceGroup placement).
 
 Instances of an account scoped solution will be identified by the `Tenant` and `Account` link attributes. They will typically contain an occurrence of the HostingPlatform component for each region in which resources are required.
 
@@ -102,11 +104,9 @@ In general, it is expected that a LinkRef will be used for location links
 to centralise any qualifications, for example differentiation between non-production and production environment placements.
 
 ### ResourceGroup placement
-Placement of a resource group will be done by way of a location with the same name as the resource group, which **must** link to a HostingPlatform occurrence.
+Placement of a resource group will be done by way of a location with the same name as the resource group, which **must** link to a `HostingPlatform` occurrence. The occurrence will be expected to offer `PROVIDER_ID`, `REGION` and `DEPLOYMENT_FRAMEWORK` attributes.
 
 A transition from the existing, single `default` resource group arrangement can easily be accommodated by defining the `_default` location using a LinkRef that switches HostingPlatform on the basis of environment.
-
-In turn, the HostingPlatform will provide the provider subscription id, region id and DeploymentFramework.
 
 ### Other Location Uses
 
