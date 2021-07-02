@@ -46,10 +46,14 @@ Chosen option: "Extend link semantics", because it addresses the decision driver
 
 ### New Link Semantics
 
-Currently links are used extensively in product solutions. A link goes from an occurrence to another within a solution. This option builds on existing link processing as follows;
+Currently , a link goes from one occurrence in a solution to another _within_ the same solution solution.
+
+This option builds on existing link processing by adding support for a link to target an occurrence in _another_ solution as follows;
 
 1. A link targets an occurrence within a solution.
-1. A link uses attributes to identify a solution and the specific occurrence within that solution.
+1. A link consists of two parts;
+- those attributes that identify a solution within a `District`
+- those attributes that identify an occurrence within the solution.
 1. Occurrences within a solution are identified by a standard set of link attributes
      - `Tier`
      - `Component`
@@ -59,13 +63,16 @@ Currently links are used extensively in product solutions. A link goes from an o
 
    Thus these attributes must be present on a link, or be inherited from the occurrence on which the link is configured.
 1. The `Subcomponent` attribute replaces use of type specific attributes such as `Port`.
-1. An optional `Type` attribute is added to ensure links to same named subcomponents can be resolved. Its value is the component type of the link target.
-1. Each solution has a scope and an identifier within the scope.
-1. A link must have a `Scope` attribute representing the target-solution's scope. The default, representing existing usage, is the `segment` scope.
-1. The scope value determines what other ordered attributes of the link are used to identify the specific solution required.
-1. The attributes to identify the particular solution must either be present on the link, or inherited from the occurrence on which
-the link is configured.
-1. For the `segment` scope, the ordered attributes used to identify a specific solution are `Tenant`, `Product`, `Environment` and `Segment`.
+1. An optional `Type` attribute is added to ensure links to same named subcomponents can be resolved. Its value is the desired component type of the link target. A side effect of this for any link, the `Type` attribute can be added to document an expectation of the type of the intended target allowing misconfigured links to be identified in some cases.
+1. Districts will be configured via a `districts` plugin directory, with each directory having an `id.ftl` file to define the district.
+1. Each `District` has a name and defines an ordered set of layers used to identify solutions within the `District`. In turn, the input filter attribute associated with each layer is used as the attribute in the link used to identify the layer within a district.
+1. In order to resolve a link, the desired district must be known, and a value for each of the layers identifying solutions in the distict must be known.
+1. To identify the district, a link must have a `District` attribute whose value matches the name of one of the known districts. It has a default of `self` which means the link will use the district associated with the solution from which the link originates.
+1. As an initial implementation, the following districts will be defined in the shared provider with the indicated layer ordering;
+  - `segment` = `Product`, `Environment`, `Segment`
+  - `account` = `Account`
+  - `tenant` = `Tenant`
+1. In the same way that a link can inherit occurrence identifiers from the source component, it inherits layer identifiers from the source solution.
 1. Link indirection is supported by an optional `LinkRef` attribute within a link object. If present, no other link attributes should be explicitly provided.
 1. The value of a LinkRef attribute is used as the attribute name in a `LinkRefs` configuration object, with the attribute value
 being the desired link definition.
@@ -77,20 +84,17 @@ This option also introduces two new components - `Subscription` and `HostingPlat
 
 A `Subscription` component represents provider specific mechanism for purchasing hosting capability, such as an `account` with AWS or a `subscription` with Azure.
 
-Subscription components will typically be used with a `tenant` scoped solution. Instances of a tenant scoped solution will be identified by the `Tenant` link attribute.
+Subscription components will typically be used with a `tenant` district solution.
 
 A `HostingPlatform` component represents a place within a subscription where resources can physically be deployed.
 
-HostingPlatform components will typically be used within an `account` scoped solution, optionally linked to the Subscription component with which they are associated. Where the subscription is externally created, the HostingPlatform explicitly carries the provider information for the subscription. Mixed usage are expected to be common, e.g. a master account for AWS is created externally with all subsequent accounts then being created via Subscription components.
+HostingPlatform components will typically be used within an `account` district solution, optionally linked to the `Subscription` component with which they are associated. Where the subscription is externally created, the HostingPlatform explicitly carries the provider information for the subscription. Mixed usage are expected to be common, e.g. a master account for AWS is created externally with all subsequent accounts then being created via Subscription components.
 
-As an example of usage, for AWS or Azure it would be normal to see this component in each `account` scoped solution, with instances for each region that is active in the account. In the initial implementation, this component would not have resources of its own but would act somewhat like the external component and simply provide key attributes (like providerId and region in the case of AWS or Azure). However it is also likely that other components within an account solution, such as registries, would also link to this component in order to establish where account solution resources should be deployed. So when deploying an S3 based registry, a region would need to be provided to select the desired template to generate, with the HostingPlatform then being used to determine if a given registry should be included (see below on ResourceGroup placement).
-
-Instances of an account scoped solution will be identified by the `Tenant` and `Account` link attributes. They will typically contain an occurrence of the HostingPlatform component for each region in which resources are required.
+As an example of usage, for AWS or Azure it would be normal to see this component in each `account` district solution, with instances for each region that is active in the account. In the initial implementation, this component would not have resources of its own but would act somewhat like the external component and simply provide key attributes (like providerId and region in the case of AWS or Azure). However it is also likely that other components within an `account` district solution, such as registries, would also link to this component in order to establish where account solution resources should be deployed. So when deploying an S3 based registry, a region would need to be provided as a command line option to select the desired template to generate, with the HostingPlatform then being used to determine if a given registry should be included (see below on ResourceGroup placement).
 
 ### Locations Occurrence Attribute
 
-All components will now support a `Locations` attribute, the purpose of which is to provide the mechanism for a component to document its
-requirements for information related to the placement of other components.
+All components will now support a `Locations` attribute, the purpose of which is to provide the mechanism for a component to document its requirements for information related to the placement of other components.
 
 Each location is represented as a key within the Locations attribute, with eack key having a **mandatory** `Link` attribute.
 
@@ -114,7 +118,9 @@ Over time, other uses of locations are expected, such as the selection of regist
 
 The current baseline and network processing could also be merged into location processing, perhaps with predefined values of `_baseline` and `_network`. A component requiring these would still need to declare them for validation and documentation purposes.
 
-* Good, because it reuses existing concepts
+### Assessment
+
+* Good, because it reuses existing concepts (layers, districts, solutions)
 * Good, because it improves documentation of dependency requirements between components
-* Good, becuase account and placement information is contined within the CMDB
-* Bad, because a degree of expertise in deployment profiles (a more advanced fature) is required.
+* Good, because placement information is contained within the CMDB
+* Bad, because a degree of expertise in deployment profiles (a more advanced fature) is required for more advanced use cases.
