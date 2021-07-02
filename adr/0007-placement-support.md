@@ -69,9 +69,9 @@ This option builds on existing link processing by adding support for a link to t
 1. In order to resolve a link, the desired district must be known, and a value for each of the layers identifying solutions in the distict must be known.
 1. To identify the district, a link must have a `District` attribute whose value matches the name of one of the known districts. It has a default of `self` which means the link will use the district associated with the solution from which the link originates.
 1. As an initial implementation, the following districts will be defined in the shared provider with the indicated layer ordering;
-  - `segment` = `Product`, `Environment`, `Segment`
-  - `account` = `Account`
-  - `tenant` = `Tenant`
+    - `segment` = `Product`, `Environment`, `Segment`
+    - `account` = `Account`
+    - `tenant` = `Tenant`
 1. In the same way that a link can inherit occurrence identifiers from the source component, it inherits layer identifiers from the source solution.
 1. Link indirection is supported by an optional `LinkRef` attribute within a link object. If present, no other link attributes should be explicitly provided.
 1. The value of a LinkRef attribute is used as the attribute name in a `LinkRefs` configuration object, with the attribute value
