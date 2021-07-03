@@ -1,8 +1,8 @@
 # Placement Support
 
-* Status: proposed
-* Deciders: [list everyone involved in the decision] <!-- optional -->
-* Date: 2021-06-18
+* Status: accepted
+* Deciders: roleyfoley, rossMurr4y, ml019
+* Date: 2021-07-03
 
 ## Context and Problem Statement
 
