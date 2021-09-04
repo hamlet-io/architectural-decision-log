@@ -46,7 +46,7 @@ Chosen option: "Extend link semantics", because it addresses the decision driver
 
 ### New Link Semantics
 
-Currently , a link goes from one occurrence in a solution to another _within_ the same solution solution.
+Currently, a link goes from one occurrence in a solution to another _within_ the same solution solution.
 
 This option builds on existing link processing by adding support for a link to target an occurrence in _another_ solution as follows;
 
@@ -76,7 +76,7 @@ This option builds on existing link processing by adding support for a link to t
 1. Link indirection is supported by an optional `LinkRef` attribute within a link object. If present, no other link attributes should be explicitly provided and if provided will be ignored.
 1. The value of a LinkRef attribute is used as the attribute name in a `LinkRefs` configuration object, with the attribute value
 being the desired link definition.
-1. `LinkRef` definitions can be provided via a `LinkRefs` attribute within a blueprint, or via the `Solution`, `Product` and `Tenant` layer configurations. Precendence order is the opposite - `Tenant` then `Product` then `Solution` then blueprint. Note that, as with any other blueprint configuration, this permits modules to inject `LinkRef` definitions into the blueprint but not to override any layer based definitions.
+1. `LinkRef` definitions can be provided via a `LinkRefs` attribute within a blueprint, or via the `Solution`, `Product` and `Tenant` layer configurations. Precedence order is the opposite - `Tenant` then `Product` then `Solution` then blueprint. Note that, as with any other blueprint configuration, this permits modules to inject `LinkRef` definitions into the blueprint but not to override any layer based definitions.
 1. LinkRef attributes provide a convenient mechanism to centralise qualification of links shared across multiple components, as is commonly the case with placements.
 
 ### New Components
@@ -85,7 +85,7 @@ This option also introduces two new components - `Subscription` and `HostingPlat
 
 #### Subscription
 
-A `Subscription` component represents a provider specific mechanism for purchasing hosting capability, such as an `account` with AWS or a `subscription` with Azure. The `Subscription` component supports the importing of external created subscriptions as well as creation via hamlet.
+A `Subscription` component represents a provider specific mechanism for purchasing hosting capability, such as an `account` with AWS or a `subscription` with Azure. The `Subscription` component supports the importing of externally created subscriptions as well as creation via hamlet.
 
 Subscription components will typically be used with a `tenant` district solution.
 
@@ -95,11 +95,11 @@ A `HostingPlatform` component represents a place within a subscription where res
 
 HostingPlatform components will typically be used within an `account` district solution, optionally linked to the `Subscription` component with which they are associated.
 
-Like the `Subscription` component, the `HostingPlatform` component supports the importing of external created platforms as well as creation via hamlet. A more complete way of handling the situation of an external platform would be to use an imported `Subscription` and link to that.
+Like the `Subscription` component, the `HostingPlatform` component also supports the importing of externally created platforms as well as creation via hamlet. A more complete way of handling the situation of an external platform would be to use an imported `Subscription` and link the `HostingPlatform` to that.
 
-Mixed usage are expected to be common, e.g. a master account for AWS is created externally with all subsequent accounts then being created via `Subscription` components.
+Mixed usage is expected to be common, e.g. a master account for AWS is created externally with all subsequent accounts then being created via `Subscription` components.
 
-As an example of usage, for AWS or Azure it would be normal to see this component in each `account` district solution, with instances for each region that is active in the account. In the initial implementation, this component would not have resources of its own but would act somewhat like the external component and simply provide key attributes (like providerId and region in the case of AWS or Azure). However it is also likely that other components within an `account` district solution, such as registries, would also link to this component in order to establish where account solution resources should be deployed. So when deploying an S3 based registry, a region would need to be provided as a command line option to select the desired template to generate, with the HostingPlatform then being used to determine if a given registry should be included (see below on ResourceGroup placement).
+As an example of usage, for AWS or Azure it would be normal to see this component in each `account` district solution, with instances for each region that is active in the account. In the initial implementation, this component would not have resources of its own but would act somewhat like the `externalservice` component and simply provide key attributes (like providerId and region in the case of AWS or Azure). However it is also likely that other components within an `account` district solution, such as registries, would also link to this component in order to establish where account solution resources should be deployed. So when deploying an S3 based registry, a region would need to be provided as a command line option to select the desired template to generate, with the HostingPlatform then being used to determine if a given registry should be included (see below on ResourceGroup placement).
 
 ### Locations Occurrence Attribute
 
