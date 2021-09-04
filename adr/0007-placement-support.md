@@ -25,11 +25,11 @@ The introduction of dynamic cmdb loading and the input pipeline processor with f
 
 ## Considered Options
 
-This ADR extends on the decision made in [ADR-0002](../0002-layer-deployments.md) - Layer Level Deployments and provides more design detail, primarily by the enrichment of link semantics.
+This ADR extends on the decision made in [ADR-0002](./0002-layer-deployments.md) - Layer Level Deployments and provides more design detail, primarily by the enrichment of link semantics.
 
 ## Decision Outcome
 
-Chosen option: "Extend link semantics", because it addresses the decision drivers best (see below) and aligns with the decision previously made.
+Chosen option: "Extend link semantics", because it addresses the decision drivers best (see below) and aligns with the ADR-0002 decision previously made.
 
 ### Positive Consequences <!-- optional -->
 
