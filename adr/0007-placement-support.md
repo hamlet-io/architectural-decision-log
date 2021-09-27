@@ -63,7 +63,7 @@ This option builds on existing link processing by adding support for a link to t
 
    Thus these attributes must be present on a link, or be inherited from the occurrence on which the link is configured.
 1. The `Subcomponent` attribute replaces use of type specific attributes such as `Port`.
-1. An optional `Type` attribute is added to ensure links to same named subcomponents can be resolved. Its value is the desired component type of the link target. A side effect of this for any link, the `Type` attribute can be added to document an expectation of the type of the intended target allowing misconfigured links to be identified in some cases.
+1. An optional `Type` attribute is added to ensure links to same named subcomponents can be resolved. Its value is the desired component type of the link target. A side effect of this is that for any link, the `Type` attribute can be added to document an expectation of the type of the intended target allowing misconfigured links to be identified in some cases.
 1. Districts will be configured via a `districts` plugin directory, with each directory having an `id.ftl` file to define the district.
 1. Each `District` has a name and defines an ordered set of layers used to identify solutions within the `District`. In turn, the input filter attribute associated with each layer is used as the attribute in the link used to identify the layer within a district.
 1. In order to resolve a link, the desired district must be known, and a value for each of the layers identifying solutions in the district must be known.
@@ -87,11 +87,13 @@ This option also introduces two new components - `Subscription` and `HostingPlat
 
 #### Subscription
 
-A `Subscription` component represents a provider specific mechanism for purchasing hosting capability, such as an `account` with AWS or a `subscription` with Azure. The `Subscription` component supports the importing of externally created subscriptions as well as creation via hamlet.
+A `Subscription` component represents a provider specific mechanism for purchasing hosting capability, such as an `account` with AWS or a `subscription` with Azure. 
 
 The "external" namespace is used to flag attributes involved in the importing of any component. The `Subscription` component supports importation of the identifier for the provider, as well as the provider specific identifier for the `Subscription` and the deployment framework to be used by default.
 
 `Subscription` components will typically be used with a `tenant` district solution. They can also use the component location information (see below) to connect to another `Subscription`. The example of this is a master account in AWS.
+
+The `Subscription` component supports the importing of externally created subscriptions as well as creation via hamlet. Mixed usage is expected to be common, e.g. a master account for AWS is created externally with all subsequent accounts then being created via `Subscription` components.
 
 #### HostingPlatform
 
@@ -119,8 +121,6 @@ In general, it is expected that a LinkRef will be used for location links to cen
 
 ### ResourceGroup placement
 Placement of a resource group will be done by way of a location with the same name as the resource group. The target of the location will reflect information needed by the component implementation. A common example will be a link to a region based `HostingPlatform` occurrence. In this case, the occurrence will be expected to offer `PROVIDER`, `ACCOUNT`, `REGION` and `DEPLOYMENT_FRAMEWORK` attributes.
-
-A transition from the existing, single `default` resource group arrangement can easily be accommodated by defining the `default` location at the product level and using a LinkRef that switches HostingPlatform on the basis of environment.
 
 ### Other Location Uses
 
